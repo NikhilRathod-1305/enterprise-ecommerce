@@ -1,6 +1,6 @@
 import express from 'express';
 import { healthCheck, versionCheck , getTime } from '../controllers/system.controller.js';
-
+import logger from '../middlewares/logger.middleware.js';
 const router = express.Router();
 
 router.get('/health', healthCheck);
