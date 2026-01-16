@@ -1,14 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import systemRoutes from './routes/system.routes.js';
-import logger from './middlewares/logger.middleware.js';
+import errorHandler from './utils/errorHandler.js';
+import userRoutes from './routes/user.routes.js'
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(logger);
+// app.use(logger);
+// app.use(requestTime);
 
-app.use('/api', systemRoutes);
+app.use('/api', userRoutes);
+
+app.use(errorHandler);
 
 export default app;
