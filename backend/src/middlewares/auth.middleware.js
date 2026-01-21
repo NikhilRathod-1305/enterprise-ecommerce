@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import {env} from '../config/env.js'
 
 const protect = (req, res, next) => {
     let token;
@@ -18,7 +19,7 @@ const protect = (req, res, next) => {
     }
 
     try{
-        const decoded = jwt.verify(token , process.env.JWT_SECRET);
+        const decoded = jwt.verify(token , env.JWT_SECRET);
         req.user = decoded;
         next();
     }

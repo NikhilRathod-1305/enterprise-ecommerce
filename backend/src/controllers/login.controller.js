@@ -23,19 +23,21 @@ export const login = async (req, res, next) => {
 
         const token = jwt.sign(
             { id: user._id, role: user.role },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
+            env.JWT_SECRET,
+            { expiresIn: env.JWT_EXPIRES_IN }
         );
         const refresh = jwt.sign(
             { id: user._id },
-            process.env.JWT_REFRESH_SECRET,
-            { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN }
+            env.JWT_REFRESH_SECRET,
+            { expiresIn: env.JWT_REFRESH_EXPIRES_IN }
         );
         res.cookie('refreshToken', refresh, {
             httpOnly: true,
             secure: false,
             SameSite: 'strict'
         })
+        console.log(token,'  token');
+        
         res.json({
             sucess: true,
             token
