@@ -1,6 +1,7 @@
 import express from 'express';
 import { createUser, deleteUser, getUserById, getUsers, updateUser } from '../controllers/user.controller.js';
 import { login } from '../controllers/login.controller.js';
+import logout from '../controllers/logout.controller.js'
 import protect from '../middlewares/auth.middleware.js';
 import authorize from '../middlewares/role.middleware.js';
 
@@ -11,6 +12,7 @@ router.get('/users', protect, getUsers);
 router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUser);
 router.delete('/users/:id',protect,authorize('admin'), deleteUser);
-router.post('/login',login)
+router.post('/login',login);
+router.post('/logout',logout)
 
 export default router;
