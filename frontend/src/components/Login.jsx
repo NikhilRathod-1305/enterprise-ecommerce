@@ -54,6 +54,7 @@ function Login(){
         />
         <button type='submit'>Submit</button>
       </form>
+      <button navigate='/createUser'>Register</button>
     </div>
   )
 }
